@@ -7,7 +7,7 @@ import CustomTheme from "CustomTheme";
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={CustomTheme}>
-      <Container>
+      <Container px='0px'>
         <App />
       </Container>
     </ChakraProvider>

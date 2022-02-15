@@ -1,23 +1,28 @@
 import React from "react";
-import { Box, Flex, Icon, Image } from "@chakra-ui/react";
-import Navigation from "./Navigation";
-import { FiSearch } from "react-icons/fi";
-import { RiShoppingCartLine } from "react-icons/ri";
+import { Box, Flex, Image } from "@chakra-ui/react";
 
 const Header = () => {
   return (
-    <Flex justify='space-between' align='center' bg='white'>
-      <Flex align='center'>
-        <Navigation />
-        <Box>
-          <Image src='logo.png' alt='header logo' />
-        </Box>
+    <Box position='relative'>
+      <Flex justify='space-between' align='center' bg='white' h='60px' px={5}>
+        <Flex align='center'>
+          <Box mr='12px'>
+            <Image src='menu.svg' alt='header logo' />
+          </Box>
+          <Box w='130px'>
+            <Image src='logo.svg' />
+          </Box>
+        </Flex>
+        <Flex align='center'>
+          <Box>
+            <Image src='search.svg' />
+          </Box>
+          <Box>
+            <Image src='cart.svg' ml='20px' />
+          </Box>
+        </Flex>
       </Flex>
-      <Flex align='center'>
-        <Icon as={FiSearch} color='dark' w='30px' h='30px' />
-        <Icon as={RiShoppingCartLine} color='dark' w='30px' h='30px' />
-      </Flex>
-    </Flex>
+    </Box>
   );
 };
 
