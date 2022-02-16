@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import Product from "./models/product.js";
 import productRoutes from "./routes/product.js";
+import userRoutes from "./routes/user.js";
 dotenv.config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/products", productRoutes);
+app.use("/users", userRoutes);
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
