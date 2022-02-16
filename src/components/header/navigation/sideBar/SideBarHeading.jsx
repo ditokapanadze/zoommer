@@ -31,7 +31,9 @@ const SidebarHeading = ({ onToggle }) => {
                   mt='3px'
                 />
               </Box>
-              <Text fontSize='xs'>{item.text}</Text>
+              <Text fontSize='xs' mt='6px'>
+                {item.text}
+              </Text>
             </Flex>
           </Button>
         ))}
