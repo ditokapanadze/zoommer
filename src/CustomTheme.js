@@ -8,6 +8,8 @@ const CustomTheme = extendTheme({
     "bg-main": "#f5f5f5",
   },
 
+  components: { Button: { baseStyle: { _focus: { boxShadow: "none" } } } },
+
   styles: {
     global: {
       body: {

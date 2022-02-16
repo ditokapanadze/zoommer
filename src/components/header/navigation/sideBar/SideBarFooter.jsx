@@ -1,17 +1,11 @@
 import React from "react";
-import {
-  Box,
-  Flex,
-  List,
-  ListItem,
-  Link,
-  Text,
-  Image,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Flex, List, ListItem, Link, Text, Icon } from "@chakra-ui/react";
+import { FaFacebookF, FaYoutube } from "react-icons/fa";
 
 const SideBarFooter = () => {
   const footerItems = ["ონლაინ განვადება", "მიტანის მეთოდი", "ფილიალები"];
+  const socials = [FaFacebookF, FaYoutube];
+
   return (
     <Flex direction='column'>
       <Box mb='25px'>
@@ -28,31 +22,27 @@ const SideBarFooter = () => {
         </List>
       </Box>
       <Flex>
-        <Link>
-          <Flex
-            justify='center'
-            align='center'
-            bg='gray.100'
-            w='40px'
-            h='40px'
-            borderRadius='50%'
-            mr='15px'
-          >
-            <Image src='facebook.png' w='14px' h='14px' />
-          </Flex>
-        </Link>
-        <Link>
-          <Flex
-            justify='center'
-            align='center'
-            bg='gray.100'
-            w='40px'
-            h='40px'
-            borderRadius='50%'
-          >
-            <Image src='youtube.png' w='14px' h='14px' />
-          </Flex>
-        </Link>
+        {socials.map((item, i) => (
+          <Link key={i}>
+            <Flex
+              justify='center'
+              align='center'
+              bg='gray.100'
+              p='20px'
+              borderRadius='50%'
+              mr='15px'
+              position='relative'
+            >
+              <Icon
+                as={item}
+                fill='dark'
+                position='absolute'
+                w='15px'
+                h='15px'
+              />
+            </Flex>
+          </Link>
+        ))}
       </Flex>
     </Flex>
   );
