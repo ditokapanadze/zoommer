@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import product from "../models/product.js";
+
 import Product from "../models/product.js";
 
 // პროდუქტის დამატება
