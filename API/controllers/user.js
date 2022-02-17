@@ -100,7 +100,7 @@ export const generateRessetToken = async (req, res, next) => {
     // emial text
     const message = `
     <h1>You have requested a password reset</h1>
-    <p>Please make a put request to the following link:</p>
+    <p>Please follow the link bellow, and do not share it with anybody:</p>
     <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
   `;
     await sendEmail({

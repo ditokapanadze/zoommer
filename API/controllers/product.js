@@ -24,3 +24,16 @@ export const getAllProducts = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+export const searchProduct = async (req, res) => {
+  const query = req.query.search;
+
+  try {
+    const foundProduct = await Product.find({
+      name: new RegExp(query, "i"),
+    });
+    res.status(200).json(foundProduct);
+  } catch (err) {
+    res.status(400).json({ message: "product not found" });
+  }
+};
