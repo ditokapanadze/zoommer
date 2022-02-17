@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
