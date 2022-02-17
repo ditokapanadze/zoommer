@@ -6,7 +6,7 @@ const verifyToken = async (req, res, next) => {
   //   const token = authHeader && authHeader.split("")[1];
   //   console.log(token);
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdG9rYXBhbmFkemUwQGdtYWlsLmNvbSIsIm5hbWUiOiJkaXRvIiwiaWF0IjoxNjQ1MDg1OTcwLCJleHAiOjE2NDUwODk1NzB9.Qk4GD-aGNnZu9GojA_3-IUcQVHX6n23uEFsakJE2CPo";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdG9rYXBhbmFkemUwQGdtYWlsLmNvbSIsIm5hbWUiOiJkaXRvIiwiaWF0IjoxNjQ1MTA2MjQzLCJleHAiOjE2NDUxMDk4NDN9.2zxMaVLyngv97dAnl3NMSWlAW6dPzGJdh6b29F_RhBY";
 
   if (!token) {
     return res.status(401).json({ message: "not authorized" });

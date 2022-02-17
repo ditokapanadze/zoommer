@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import verifyToken from "../Middleware/verifyToken.js";
 import sendEmail from "../utils/mailer.js";
+
 dotenv.config();
 
 export const registerUser = async (req, res) => {
@@ -134,5 +135,25 @@ export const resetPassword = async (req, res, next) => {
     res.status(201).json({ message: "password changed" });
   } catch (err) {
     res.status(400).json({ message: err.message });
+  }
+};
+
+export const profileUpdate = async (req, res, next) => {
+  const { name, avatar } = req.body;
+  const user = req.user;
+
+  try {
+    const newUser = await User.findOneAndUpdate(
+      { email: user.email },
+      { name: name && name, avatar: avatar && avatar },
+      // { avatar: avatar && avatar },
+
+      { new: true },
+    );
+    // const findUser = await User.findOne({ email: user.email });
+
+    res.status(200).json({ newUser });
+  } catch (err) {
+    res.status(400).json(err.message);
   }
 };
