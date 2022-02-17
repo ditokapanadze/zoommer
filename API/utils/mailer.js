@@ -5,7 +5,7 @@ const sendEmail = (x) => {
     service: "gmail",
     auth: {
       user: "zoommer525@gmail.com",
-      pass: "zoommer525zoommer525!",
+      pass: process.env.MAIL_PASS,
     },
   });
 

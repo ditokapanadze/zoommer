@@ -11,23 +11,28 @@ export const registerUser = async (req, res) => {
   const { email, password, name } = req.body;
 
   try {
+    // chek if email is alreadi=y used
     const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
         message: "Email already in use, did you forget your password",
       });
     }
-    const hash = await bcrypt.hash(password, 12);
 
+    // generated hash password
+    const hash = await bcrypt.hash(password, 12);
     const newUser = await User.create({
       email,
       password: hash,
       name,
     });
 
+    // generate token
+    console.log(process.env.JWT_SECRET);
     const token = jwt.sign(
       { email: newUser.email, id: newUser._id },
-      "CnsyiR1YYwsckdRT0kiDntMbNenoeg2eTTzDpRoJuFnjMHR7H6/wOFhuqQ1+X+mtB8mSsDiqeIRXINIKeqinqLd3CZGVYsaJosCPVD+c9EPS9X9utCeg3etVPlJ81PKmrxKVO7rKp95H4Gdh1pE8IMTanLQHPmYwxNm3+JsAw7hRkyxaGc/+xQ4QSAgK/nSzchmCnOJVJ9tSECi2waNMTVkhH8Kc4AA6MhC3XPoI0gFSTL8SMIU0B3JHJVYAyFRKzZgEANHqhEWnkDXRhkFqBzTDvrBGZKqSmu5BNs1/l6R4ge4YBDG44ZJXbE7Uf7lpe74yxq8DIJzSxeqKStNwlw==",
+      // "CnsyiR1YYwsckdRT0kiDntMbNenoeg2eTTzDpRoJuFnjMHR7H6/wOFhuqQ1+X+mtB8mSsDiqeIRXINIKeqinqLd3CZGVYsaJosCPVD+c9EPS9X9utCeg3etVPlJ81PKmrxKVO7rKp95H4Gdh1pE8IMTanLQHPmYwxNm3+JsAw7hRkyxaGc/+xQ4QSAgK/nSzchmCnOJVJ9tSECi2waNMTVkhH8Kc4AA6MhC3XPoI0gFSTL8SMIU0B3JHJVYAyFRKzZgEANHqhEWnkDXRhkFqBzTDvrBGZKqSmu5BNs1/l6R4ge4YBDG44ZJXbE7Uf7lpe74yxq8DIJzSxeqKStNwlw==",
+      process.env.JWT_SECRET,
       {
         expiresIn: "1h",
       },
@@ -43,20 +48,26 @@ export const signIn = async (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
   try {
+    // chek if user exists
     const user = await User.findOne({ email });
     if (!user) {
       return res
         .status(404)
         .json({ message: "User with this email does not exist" });
     }
+
+    // chek if password is correct
     const checkPassword = await bcrypt.compare(password, user.password);
     if (!checkPassword) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
+    // generate token'
+    console.log(process.env.JWT_SECRET);
     const token = await jwt.sign(
       { email: user.email, name: user.name },
-      "CnsyiR1YYwsckdRT0kiDntMbNenoeg2eTTzDpRoJuFnjMHR7H6/wOFhuqQ1+X+mtB8mSsDiqeIRXINIKeqinqLd3CZGVYsaJosCPVD+c9EPS9X9utCeg3etVPlJ81PKmrxKVO7rKp95H4Gdh1pE8IMTanLQHPmYwxNm3+JsAw7hRkyxaGc/+xQ4QSAgK/nSzchmCnOJVJ9tSECi2waNMTVkhH8Kc4AA6MhC3XPoI0gFSTL8SMIU0B3JHJVYAyFRKzZgEANHqhEWnkDXRhkFqBzTDvrBGZKqSmu5BNs1/l6R4ge4YBDG44ZJXbE7Uf7lpe74yxq8DIJzSxeqKStNwlw==",
+      process.env.JWT_SECRET,
+      // "CnsyiR1YYwsckdRT0kiDntMbNenoeg2eTTzDpRoJuFnjMHR7H6/wOFhuqQ1+X+mtB8mSsDiqeIRXINIKeqinqLd3CZGVYsaJosCPVD+c9EPS9X9utCeg3etVPlJ81PKmrxKVO7rKp95H4Gdh1pE8IMTanLQHPmYwxNm3+JsAw7hRkyxaGc/+xQ4QSAgK/nSzchmCnOJVJ9tSECi2waNMTVkhH8Kc4AA6MhC3XPoI0gFSTL8SMIU0B3JHJVYAyFRKzZgEANHqhEWnkDXRhkFqBzTDvrBGZKqSmu5BNs1/l6R4ge4YBDG44ZJXbE7Uf7lpe74yxq8DIJzSxeqKStNwlw==",
       {
         expiresIn: "1h",
       },
@@ -67,24 +78,26 @@ export const signIn = async (req, res) => {
   }
 };
 
-export const ttt = async (req, res, next) => {
-  console.log(req.user);
-};
-
 export const generateRessetToken = async (req, res, next) => {
   const { resetEmail } = req.body;
   console.log(resetEmail);
   try {
+    // chek if user exists
     const user = await User.findOne({ email: resetEmail });
     if (!user) {
       return res.status(400).json({ message: "user not found" });
     }
+
+    // generate reset token
     const resetToken = await jwt.sign(
       { email: user.email, name: user.name },
-      "CnsyiR1YYwsckdRT0kiDntMbNenoeg2eTTzDpRoJuFnjMHR7H6/wOFhuqQ1+X+mtB8mSsDiqeIRXINIKeqinqLd3CZGVYsaJosCPVD+c9EPS9X9utCeg3etVPlJ81PKmrxKVO7rKp95H4Gdh1pE8IMTanLQHPmYwxNm3+JsAw7hRkyxaGc/+xQ4QSAgK/nSzchmCnOJVJ9tSECi2waNMTVkhH8Kc4AA6MhC3XPoI0gFSTL8SMIU0B3JHJVYAyFRKzZgEANHqhEWnkDXRhkFqBzTDvrBGZKqSmu5BNs1/l6R4ge4YBDG44ZJXbE7Uf7lpe74yxq8DIJzSxeqKStNwlw==",
+      process.env.JWT_SECRET,
+      // "CnsyiR1YYwsckdRT0kiDntMbNenoeg2eTTzDpRoJuFnjMHR7H6/wOFhuqQ1+X+mtB8mSsDiqeIRXINIKeqinqLd3CZGVYsaJosCPVD+c9EPS9X9utCeg3etVPlJ81PKmrxKVO7rKp95H4Gdh1pE8IMTanLQHPmYwxNm3+JsAw7hRkyxaGc/+xQ4QSAgK/nSzchmCnOJVJ9tSECi2waNMTVkhH8Kc4AA6MhC3XPoI0gFSTL8SMIU0B3JHJVYAyFRKzZgEANHqhEWnkDXRhkFqBzTDvrBGZKqSmu5BNs1/l6R4ge4YBDG44ZJXbE7Uf7lpe74yxq8DIJzSxeqKStNwlw==",
       { expiresIn: "600s" },
     );
     const resetUrl = `http://localhost:5001/passwordreset/${resetToken}`;
+
+    // emial text
     const message = `
     <h1>You have requested a password reset</h1>
     <p>Please make a put request to the following link:</p>
@@ -107,11 +120,13 @@ export const resetPassword = async (req, res, next) => {
   console.log(user);
 
   try {
+    // find user
     const newUser = await User.findOne({ email: user.email });
     if (!user) {
       return res.status(400).json({ message: "user not found" });
     }
-    console.log(newUser);
+
+    //generate has password
     const hash = await bcrypt.hash(newPassword, 12);
     newUser["password"] = hash;
     await newUser.save();
