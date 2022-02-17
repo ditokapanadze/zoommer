@@ -30,6 +30,7 @@ const CustomTheme = extendTheme({
   components: {
     Container,
     Button: { baseStyle: { _focus: { boxShadow: "none" } } },
+    Link: { baseStyle: { _focus: { boxShadow: "none" } } },
   },
 
   styles: {

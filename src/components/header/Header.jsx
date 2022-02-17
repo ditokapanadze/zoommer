@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Flex, Image, Button } from "@chakra-ui/react";
 
-const Header = ({ onToggle }) => {
+const Header = ({ onToggleSideBar, isOpenSearch, onToggleSearch }) => {
   return (
     <Box position='relative'>
       <Flex justify='space-between' align='center' bg='white' h='60px' px={5}>
         <Flex align='center'>
           <Button px='0'>
-            <Box mr='12px' onClick={onToggle}>
+            <Box mr='12px' onClick={onToggleSideBar}>
               <Image src='menu.svg' alt='header logo' />
             </Box>
           </Button>
@@ -16,11 +16,13 @@ const Header = ({ onToggle }) => {
           </Box>
         </Flex>
         <Flex align='center'>
+          {!isOpenSearch && (
+            <Button onClick={onToggleSearch}>
+              <Image src='search.svg' />
+            </Button>
+          )}
           <Box>
-            <Image src='search.svg' />
-          </Box>
-          <Box>
-            <Image src='cart.svg' ml='20px' />
+            <Image src='cart.svg' />
           </Box>
         </Flex>
       </Flex>

@@ -1,10 +1,14 @@
 import React from "react";
 import { Box, Flex, List, ListItem, Link, Text, Icon } from "@chakra-ui/react";
-import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaYoutube, FaTwitter } from "react-icons/fa";
 
 const SideBarFooter = () => {
   const footerItems = ["ონლაინ განვადება", "მიტანის მეთოდი", "ფილიალები"];
-  const socials = [FaFacebookF, FaYoutube];
+  const socials = [
+    { icon: FaFacebookF, link: "https://www.facebook.com/" },
+    { icon: FaYoutube, link: "https://www.youtube.com/" },
+    { icon: FaTwitter, link: "https://www.twitter.com/" },
+  ];
 
   return (
     <Flex direction='column'>
@@ -23,7 +27,7 @@ const SideBarFooter = () => {
       </Box>
       <Flex>
         {socials.map((item, i) => (
-          <Link key={i}>
+          <Link key={i} href={item.link} isExternal>
             <Flex
               justify='center'
               align='center'
@@ -34,7 +38,7 @@ const SideBarFooter = () => {
               position='relative'
             >
               <Icon
-                as={item}
+                as={item.icon}
                 fill='dark'
                 position='absolute'
                 w='15px'
