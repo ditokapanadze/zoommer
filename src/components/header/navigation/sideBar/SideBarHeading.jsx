@@ -5,40 +5,60 @@ import {
   Image,
   Text,
   Center,
-  Link,
   Button,
   Icon,
+  Link,
 } from "@chakra-ui/react";
 import { HiOutlineChatAlt } from "react-icons/hi";
 import { FiPhone } from "react-icons/fi";
-import { ImBullhorn } from "react-icons/fa";
+import { FaBullhorn } from "react-icons/fa";
 
-const SidebarHeading = () => {
+const SidebarHeading = ({ onToggleSideBar, onToggleChat }) => {
   const headingContent = [
-    { image: "<HiOutlineChatAlt/>", text: "ჩატი" },
-    { image: "FiPhone", text: "კონტაქტი" },
-    { image: "ImBullhorn", text: "All promotions" },
+    { image: HiOutlineChatAlt, text: "ჩატი" },
+    { image: FiPhone, text: "კონტაქტი" },
+    { image: FaBullhorn, text: "All promotions" },
   ];
-
-  headingContent.map((i) => console.log(i.image));
 
   return (
     <Flex direction='column' align='center' mt='3' position='relative'>
       <Center>
         <Image src='logo.svg' w='110px' />
       </Center>
-      <Button position='absolute' right='0' mr='30px'>
+      <Button position='absolute' right='0' mr='30px' onClick={onToggleSideBar}>
         <Image src='close.svg' w='14px' />
       </Button>
       <Flex justify='space-between' mt='10' w='100%'>
-        {headingContent.map((item, i) => (
-          <Button key={i}>
-            <Flex direction='column' align='center'>
-              <Icon as={FiPhone} color='dark' />
-              <Text fontSize='xs'>{item.text}</Text>
-            </Flex>
-          </Button>
-        ))}
+        <Button onClick={onToggleChat} variant='link'>
+          <Flex direction='column' align='center'>
+            <Box bg='secondary' px='8px' py='4px' borderRadius='4px'>
+              <Icon as={HiOutlineChatAlt} color='white' mt='3px' />
+            </Box>
+            <Text fontSize='xs' mt='6px'>
+              ჩატი
+            </Text>
+          </Flex>
+        </Button>
+        <Link href='tel:123-456-7890'>
+          <Flex direction='column' align='center'>
+            <Box bg='secondary' px='8px' py='4px' borderRadius='4px'>
+              <Icon as={FiPhone} color='white' />
+            </Box>
+            <Text fontSize='xs' fontWeight='medium' mt='6px'>
+              კონტაქტი
+            </Text>
+          </Flex>
+        </Link>
+        <Link>
+          <Flex direction='column' align='center'>
+            <Box bg='secondary' px='8px' py='4px' borderRadius='4px'>
+              <Icon as={FaBullhorn} color='white' mt='3px' />
+            </Box>
+            <Text fontSize='xs' mt='6px' fontWeight='medium'>
+              All Promotions
+            </Text>
+          </Flex>
+        </Link>
       </Flex>
     </Flex>
   );
