@@ -3,6 +3,7 @@ import CustomTheme from "./CustomTheme";
 import Header from "./components/header/Header";
 import SideBar from "./components/header/navigation/sideBar/SideBar";
 import SearchBar from "./components/header/SearchBar";
+import Main from "./components/main/Main";
 
 const App = () => {
   const { isOpen: isOpenSideBar, onToggle: onToggleSideBar } = useDisclosure();
@@ -22,8 +23,12 @@ const App = () => {
           isOpenSideBar={isOpenSideBar}
           onToggleSideBar={onToggleSideBar}
         />
+        <SearchBar
+          onToggleSearch={onToggleSearch}
+          isOpenSearch={isOpenSearch}
+        />
       </Container>
-      <SearchBar onToggleSearch={onToggleSearch} isOpenSearch={isOpenSearch} />
+      <Main />
     </ChakraProvider>
   );
 };

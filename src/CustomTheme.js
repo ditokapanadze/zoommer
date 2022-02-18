@@ -16,7 +16,7 @@ const CustomTheme = extendTheme({
 
   sizes: {
     container: {
-      maxWidth: "100%",
+      maxW: "100%",
     },
   },
 

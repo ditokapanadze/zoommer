@@ -14,12 +14,6 @@ import { FiPhone } from "react-icons/fi";
 import { FaBullhorn } from "react-icons/fa";
 
 const SidebarHeading = ({ onToggleSideBar, onToggleChat }) => {
-  const headingContent = [
-    { image: HiOutlineChatAlt, text: "ჩატი" },
-    { image: FiPhone, text: "კონტაქტი" },
-    { image: FaBullhorn, text: "All promotions" },
-  ];
-
   return (
     <Flex direction='column' align='center' mt='3' position='relative'>
       <Center>

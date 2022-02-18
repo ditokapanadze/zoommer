@@ -3,14 +3,14 @@ import { Box, Flex, List, ListItem, Link, Text, Image } from "@chakra-ui/react";
 
 const NavList = () => {
   const navItems = [
-    { image: "mobile.svg", text: "მობილურები" },
-    { image: "headphone.svg", text: "ტაბები | აქსესუარები" },
-    { image: "laptop.svg", text: "ლეპტოპები | IT" },
-    { image: "audio.svg", text: "აუდიო სისტემა" },
-    { image: "gaming.svg", text: "Gaming" },
-    { image: "tv.svg", text: "ტელევიზორი | მონტიორი" },
-    { image: "photo.svg", text: "ფოტო | ვიდეო | ოპტიკა" },
-    { image: "smart.svg", text: "ჭკვიანი სახლი" },
+    { image: "icons/mobile.svg", text: "მობილურები" },
+    { image: "icons/headphone.svg", text: "ტაბები | აქსესუარები" },
+    { image: "icons/laptop.svg", text: "ლეპტოპები | IT" },
+    { image: "icons/audio.svg", text: "აუდიო სისტემა" },
+    { image: "icons/gaming.svg", text: "Gaming" },
+    { image: "icons/tv.svg", text: "ტელევიზორი | მონტიორი" },
+    { image: "icons/photo.svg", text: "ფოტო | ვიდეო | ოპტიკა" },
+    { image: "icons/smart.svg", text: "ჭკვიანი სახლი" },
   ];
 
   return (
