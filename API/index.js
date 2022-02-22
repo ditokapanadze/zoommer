@@ -11,10 +11,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Helooooo");
-});
-
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 
